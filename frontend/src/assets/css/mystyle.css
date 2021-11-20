@@ -69,3 +69,25 @@ html {
   font-size: 16px;
   font-weight: 500;
 }
+
+/* 导航栏框架修改 */
+.el-submenu__title:hover {
+  background-color: #00000060 !important;
+}
+.el-menu-item:hover {
+  background-color: #00000060 !important;
+}
+.el-menu {
+  border: none;
+}
+.el-menu i {
+  color: #ffc815;
+}
+.el-form-item__label {
+  color: #fff;
+}
+.el-input input {
+  background: #00000060;
+  color: #fff;
+  border: none;
+}
