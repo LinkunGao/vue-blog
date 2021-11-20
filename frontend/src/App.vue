@@ -5,57 +5,49 @@
     <!-- 侧边栏 -->
     <div id="left-menu" :class="'dweb ' + mobile_left">
       <i @click="showHideLeftMenu" id="left-btn" class="el-icon-menu"></i>
+      <!-- 导航栏 -->
+      <el-col :span="24" style="margin-top: 80px">
+        <el-menu
+          class="el-menu-vertical-demo"
+          background-color="#00000000"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+        >
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-folder-opened"></i>
+              <span>Articles Management</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item @click="toAddArticle"
+                >Publish Ariticle</el-menu-item
+              >
+              <el-menu-item index="1-2">Article List</el-menu-item>
+              <!-- <el-menu-item index="1-3">选项3</el-menu-item> -->
+            </el-menu-item-group>
+          </el-submenu>
+          <el-menu-item index="2">
+            <i class="el-icon-user"></i>
+            <span slot="title">User Management</span>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <i class="el-icon-coin"></i>
+            <span slot="title">Reward History</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-s-operation"></i>
+            <span slot="title">Section Management</span>
+          </el-menu-item>
+          <el-menu-item index="5">
+            <i class="el-icon-back"></i>
+            <span slot="title">Logout</span>
+          </el-menu-item>
+        </el-menu>
+      </el-col>
     </div>
     <!-- 网页内容 -->
     <div id="content" :class="mobile_content">
-      <el-row :gutter="20">
-        <!-- 多行选择，复制要更改的文字，command+d -->
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-      </el-row>
-
-      <el-row :gutter="20">
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-      </el-row>
-
-      <el-row :gutter="20">
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-      </el-row>
-
-      <el-row :gutter="20">
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-        <el-col :xs="24" :lg="8"
-          ><div class="dweb" style="height: 200px"></div
-        ></el-col>
-      </el-row>
+      <router-view></router-view>
 
       <div id="footer" class="dweb">
         <span> Copyright Ⓒ 2021 SkyCoco </span>
@@ -105,6 +97,10 @@ export default {
           this.mobile_content = "";
         }
       }
+    },
+    // 跳转到添加文章页面
+    toAddArticle() {
+      this.$router.push({ name: "AddArticle" });
     },
   },
 };

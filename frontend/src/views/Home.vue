@@ -1,18 +1,59 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-row :gutter="20">
+      <!-- 多行选择，复制要更改的文字，command+d -->
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+    </el-row>
+
+    <el-row :gutter="20">
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+    </el-row>
+
+    <el-row :gutter="20">
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+    </el-row>
+
+    <el-row :gutter="20">
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+      <el-col :xs="24" :lg="8"
+        ><div class="dweb" style="height: 200px"></div
+      ></el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+export default {};
 </script>
