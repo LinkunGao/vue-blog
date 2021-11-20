@@ -30,6 +30,20 @@ html {
   position: fixed;
   z-index: 1001;
   border-radius: 0 0.25rem 0.25rem 0;
+  transition: all 0.3s ease;
+}
+#left-menu.xs {
+  margin-left: -200px;
+  transition: all 0.3s ease;
+}
+#left-menu #left-btn {
+  font-size: 35px;
+  color: #ffc815;
+  position: absolute;
+  left: 200px;
+  height: 60px;
+  display: flex;
+  align-items: center;
 }
 
 /* 页面内容 */
@@ -42,12 +56,16 @@ html {
   padding: 10px 0;
 }
 
+#content.xs {
+  margin-left: 20px;
+}
+
 /* 页面底部 */
 #footer {
   margin-top: 10px;
   text-align: center;
   padding: 10px 0;
   color: #fff;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
 }
