@@ -17,6 +17,9 @@
 
 - .env 开始变量名为 VUE_APP_xxx
 
+- 前端向后端 Django 发送 axios 请求时，直接发送字典对象，在后端是接收不了的
+  - 安装 Qs, 将 Qs 导入当前组件，import Qs from "qs"; 并使用 Qs.stringify()方法将字典对象重新封装
+
 ## backend
 
 - 安装 Django rest framework
@@ -26,6 +29,7 @@
   pip install django-filter
 
 - Cors 跨源请求的安装：
+  https://pypi.org/project/django-cors-headers/
   pip install django-cors-headers
   并将'corsheaders.middleware.CorsMiddleware', 写在 settings.py 文件中 middleware 中 common middleware 的上方
   在 settings.py 文件中配置跨域请求
@@ -61,6 +65,7 @@ CORS_ALLOW_HEADERS = [
 ]
 
 - 爬虫： 安装 beautiful soup4
+  - 官方文档：https://beautiful-soup-4.readthedocs.io/en/latest/
 
 ## Database design
 

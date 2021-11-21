@@ -57,6 +57,7 @@
 <script>
 import $ from "jquery";
 import axios from "axios";
+import Qs from "qs";
 export default {
   data() {
     return {
@@ -141,7 +142,10 @@ export default {
       // console.log(process.env);
       // console.log(process.env.VUE_APP_BASE_URL);
       axios
-        .post(process.env.VUE_APP_BASE_URL + "add-article/", article_data)
+        .post(
+          process.env.VUE_APP_BASE_URL + "add-article/",
+          Qs.stringify(article_data)
+        )
         .then((res) => {
           console.log(res);
         })
