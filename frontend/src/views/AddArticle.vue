@@ -41,7 +41,9 @@
               @click="chooseCover(img)"
             ></el-image>
           </div>
-          <el-button type="success" round>Save</el-button>
+          <el-button @click="submitArticle" type="success" round
+            >Save</el-button
+          >
         </div>
       </el-col>
       <el-col :xs="24" :lg="24">
@@ -54,6 +56,7 @@
 </template>
 <script>
 import $ from "jquery";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -62,7 +65,9 @@ export default {
         describe: "",
         contents: "",
       },
+      // 存储用户选择的封面图片
       cover_img: "",
+      // 存储所有用户上传的预览图片
       cover_list: [],
     };
   },
@@ -124,6 +129,25 @@ export default {
     // 选择封面
     chooseCover(img) {
       this.cover_img = img;
+    },
+    // 提交到后端
+    submitArticle() {
+      let article_data = {
+        title: this.article_info.title,
+        describe: this.article_info.describe,
+        content: this.article_info.contents,
+        cover: this.cover_img,
+      };
+      // console.log(process.env);
+      // console.log(process.env.VUE_APP_BASE_URL);
+      axios
+        .post(process.env.VUE_APP_BASE_URL + "add-article/", article_data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
   },
 };
