@@ -71,6 +71,7 @@ export default {
           onChange(contents) {
             console.log(contents);
           },
+          // 本地图片上传
           onImageUpload(files) {
             // console.log(files);
             let img = files[0];
@@ -86,6 +87,13 @@ export default {
               // 将上传的图片推入cover_list中展示，待选择
               self.cover_list.push(imgData.result);
             };
+          },
+          // 远程图片添加
+          onImageLinkInsert(url) {
+            let imgNode = document.createElement("img");
+            imgNode.src = url;
+            $("#summernote").summernote("insertNode", imgNode);
+            self.cover_list.push(url);
           },
         },
       });
