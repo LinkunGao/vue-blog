@@ -27,6 +27,12 @@ const routes = [
   },
 ];
 
+// 重新配置router，以避免报错
+const routerPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch((err) => err);
+};
+
 const router = new VueRouter({
   routes,
 });
