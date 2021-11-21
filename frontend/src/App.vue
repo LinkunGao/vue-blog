@@ -7,11 +7,13 @@
       <i @click="showHideLeftMenu" id="left-btn" class="el-icon-menu"></i>
       <!-- 导航栏 -->
       <el-col :span="24" style="margin-top: 80px">
+        <!-- 导航栏路由跳转方案二： @select="chooseMenu" -->
         <el-menu
           class="el-menu-vertical-demo"
           background-color="#00000000"
           text-color="#fff"
           active-text-color="#ffd04b"
+          router
         >
           <el-submenu index="1">
             <template slot="title">
@@ -19,9 +21,7 @@
               <span>Articles Management</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item @click="toAddArticle"
-                >Publish Ariticle</el-menu-item
-              >
+              <el-menu-item index="/add-article">Publish Ariticle</el-menu-item>
               <el-menu-item index="1-2">Article List</el-menu-item>
               <!-- <el-menu-item index="1-3">选项3</el-menu-item> -->
             </el-menu-item-group>
@@ -38,7 +38,7 @@
             <i class="el-icon-s-operation"></i>
             <span slot="title">Section Management</span>
           </el-menu-item>
-          <el-menu-item index="5">
+          <el-menu-item index="/logout">
             <i class="el-icon-back"></i>
             <span slot="title">Logout</span>
           </el-menu-item>
@@ -67,9 +67,9 @@ export default {
   },
   mounted() {
     // 监听页面变化，对当前屏幕宽度重新赋值
-    window.onresize = () => {
-      this.screenWidth = document.body.clientWidth;
-    };
+    // window.onresize = () => {
+    //   this.screenWidth = document.body.clientWidth;
+    // };
     this.changeDevice();
   },
   methods: {
@@ -99,9 +99,10 @@ export default {
       }
     },
     // 跳转到添加文章页面
-    toAddArticle() {
-      this.$router.push({ name: "AddArticle" });
-    },
+    // chooseMenu(index) {
+    //   // element ui 导航栏页面跳转方法二，不使用自带的router方案
+    //   this.$router.push({ path: index });
+    // },
   },
 };
 </script>
