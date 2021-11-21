@@ -21,12 +21,15 @@
         <div class="dweb"></div>
       </el-col>
       <el-col :xs="24" :lg="24">
-        <div class="dweb"></div>
+        <div class="dweb">
+          <div id="summernote">Hello Summernote</div>
+        </div>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
+import $ from "jquery";
 export default {
   data() {
     return {
@@ -36,13 +39,24 @@ export default {
       },
     };
   },
+  mounted() {
+    this.summernote();
+  },
+  methods: {
+    summernote() {
+      $("#summernote").summernote({
+        height: 200,
+        lang: "zh-CN",
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
 /* 当写了scoped 表明该css样式只作用于当前的组件 */
 .dweb {
-  height: 200px;
+  /* height: 200px; */
   padding: 20px 20px;
   display: flex;
   align-items: center;
