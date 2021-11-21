@@ -10,6 +10,7 @@
           >
             <el-form-item label="Article Title">
               <el-input v-model="article_info.title"></el-input>
+              <!-- <div>{{ article_info.title }}</div> -->
             </el-form-item>
             <el-form-item label="Description">
               <el-input
@@ -25,9 +26,19 @@
         <div class="dweb">
           <div v-for="(img, index) in cover_list" :key="index">
             <el-image
-              style="width: 100px; height: 100px"
+              v-if="img == cover_img"
+              class="cover"
+              style="width: 150px; height: 150px"
               :src="img"
               :fit="'cover'"
+              @click="chooseCover(img)"
+            ></el-image>
+            <el-image
+              v-else
+              style="width: 150px; height: 150px"
+              :src="img"
+              :fit="'cover'"
+              @click="chooseCover(img)"
             ></el-image>
           </div>
           <el-button type="success" round>Save</el-button>
@@ -49,7 +60,9 @@ export default {
       article_info: {
         title: "",
         describe: "",
+        contents: "",
       },
+      cover_img: "",
       cover_list: [],
     };
   },
@@ -69,7 +82,7 @@ export default {
         callbacks: {
           // 当输入时
           onChange(contents) {
-            console.log(contents);
+            self.article_info.contents = contents;
           },
           // 本地图片上传
           onImageUpload(files) {
@@ -95,8 +108,22 @@ export default {
             $("#summernote").summernote("insertNode", imgNode);
             self.cover_list.push(url);
           },
+          // 监听删除媒体文件
+          onMediaDelete(target) {
+            console.log(target);
+            let imgData = target[0].src;
+            for (let index = 0; index < self.cover_list.length; index++) {
+              if (self.cover_list[index] == imgData) {
+                self.cover_list.splice(index, 1);
+              }
+            }
+          },
         },
       });
+    },
+    // 选择封面
+    chooseCover(img) {
+      this.cover_img = img;
     },
   },
 };
@@ -111,6 +138,15 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.dweb .el-image:hover {
+  border: 2px solid #ffc815;
+}
+.dweb .el-image.cover {
+  border: 2px solid #ffc815;
+}
+.dweb .el-image {
+  margin: 1px;
 }
 
 .el-form-item {
