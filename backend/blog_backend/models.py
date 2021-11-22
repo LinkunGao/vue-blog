@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 # User infomation
-# class UserInfo(models.Model):
-#     icon = models.ImageField()
-#     nickName = models.CharField()
-#     # 一对一，用户个人信息表关联Django user 表
-#     belong_to = models.OneToOneField(User)
-#     def __int__(self):
-#         return self.id
+class UserInfo(models.Model):
+    icon = models.ImageField(null=True, blank=True, max_length=200)
+    nickName = models.CharField(null=True, blank=True, max_length=200)
+    # 一对一，用户个人信息表关联Django user 表, models.CASCADE指的是删除用户顺带删除用户的信息
+    belong_to = models.OneToOneField(User,on_delete=models.CASCADE,null=True, blank=True,)
+    def __int__(self):
+        return self.id
 
 # Articles information
 class Articles(models.Model):
