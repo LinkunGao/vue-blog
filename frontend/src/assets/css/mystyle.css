@@ -12,6 +12,12 @@ html {
   /* 在各种设备下按比例缩放边角 */
   border-radius: 0.25rem;
 }
+.dweb .header {
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+}
 
 /* 头部导航 */
 #top-menu {

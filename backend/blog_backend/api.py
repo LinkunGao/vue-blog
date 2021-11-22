@@ -85,11 +85,12 @@ def skycoco_login(request):
     if user:
         checkPwd = check_password(password, user[0].password)
         if checkPwd:
-            userinfo = UserInfo.objects.get(belong=user[0])
+            userinfo = UserInfo.objects.get_or_create(belong_to=user[0])
+            userinfo = UserInfo.objects.get(belong_to=user[0])
             # 此操作为一个元祖我们不能再次操作
-            token = Token.objects.get_or_create(User[0]) 
+            token = Token.objects.get_or_create(user=user[0]) 
             # 使用get方法，再次获得token
-            token = Token.objects.get(User[0])
+            token = Token.objects.get(user=user[0])
         else:
             return Response('pwderr')
 
@@ -99,7 +100,7 @@ def skycoco_login(request):
     userinfo_data = {
         'token':token.key,
         'nickName':userinfo.nickName,
-        'icon':userinfo.icon
+        'icon':str(userinfo.icon)
     }
     return Response(userinfo_data)
 # 注册
@@ -109,7 +110,7 @@ def skycoco_register(request):
     password = request.POST['password']
 
     # 注册逻辑
-    user = UserInfo.objects.filter(username=username)
+    user = User.objects.filter(username=username)
     if user:
         return Response('username_repeat')
     else:
@@ -118,10 +119,11 @@ def skycoco_register(request):
         new_user.save()
     token = Token.objects.get_or_create(user=new_user)
     token = Token.objects.get(user=new_user)
-    userinfo = UserInfo.objects.get_or_create(belong=new_user)
+    userinfo = UserInfo.objects.get_or_create(belong_to=new_user)
+    userinfo = UserInfo.objects.get(belong_to=new_user)
     userinfo_data = {
         'token':token.key,
         'nickName':userinfo.nickName,
-        'icon':userinfo.icon
+        'icon':str(userinfo.icon)
     }
     return Response(userinfo_data)
