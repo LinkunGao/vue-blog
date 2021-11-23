@@ -5,6 +5,8 @@
 - vuex
   https://vuex.vuejs.org/
   在依赖中安装 Vue.js devtools 到浏览器，并且在 main.js 的 vue object 上方添加 Vue.config.devtools = true;即可在浏览器中使用 vue 开发工具实时查看虚拟 dom，和 vuex 的值
+  vue 的所有 axios 请求应该要写在 store.js 文件下的 action 函数中，在需要调用的组件中通过 this.$store.despatch('函数名'，parameters)实现
+  ![avatar](/frontend/public/image_bug/vuex_life.jpg)
 - 安装 element UI:
   https://element.eleme.io/#/en-US
 - 富文本（jquery and bootstrap 的 webpack 引入）summernote
