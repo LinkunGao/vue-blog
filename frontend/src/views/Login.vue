@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import Qs from "qs";
 export default {
   data() {
     return {
@@ -42,23 +40,7 @@ export default {
         console.log("please complete the information");
         return;
       }
-      axios({
-        url: process.env.VUE_APP_BASE_URL + "skycoco-login/",
-        method: "post",
-        data: Qs.stringify(this.formData),
-      })
-        .then((res) => {
-          if (res.data == "none") {
-            alert("username does't exist!");
-            return;
-          } else if (res.data == "pwderr") {
-            alert("wrong password!");
-            return;
-          }
-          //   console.log(res);
-          this.$store.commit("saveUserInfo", res.data);
-        })
-        .catch((err) => console.error(err));
+      this.$store.dispatch("blogLogin", this.formData);
     },
     toRegister() {
       this.$router.push({ path: "/register" });

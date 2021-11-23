@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import Qs from "qs";
 export default {
   data() {
     return {
@@ -60,20 +58,7 @@ export default {
           alert("The password too short!");
           return;
         }
-        axios({
-          url: process.env.VUE_APP_BASE_URL + "skycoco-register/",
-          method: "post",
-          data: Qs.stringify(this.formData),
-        })
-          .then((res) => {
-            if (res.data == "username_repeat") {
-              alert("The username has already exist!");
-              return;
-            }
-            // console.log(res.data);
-            this.$store.commit("saveUserInfo", res.data);
-          })
-          .catch((err) => console.error(err));
+        this.$store.dispatch("blogRegister", this.formData);
       } else {
         alert("Please complete the form");
         return;
