@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import store from "../store";
 
 Vue.use(VueRouter);
 
@@ -9,12 +10,28 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    // 路由鉴权
+    beforeEnter: (to, from, next) => {
+      if (store.state.userInfo.token) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
   },
   {
     path: "/add-article",
     name: "AddArticle",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AddArticle.vue"),
+    // 路由鉴权
+    beforeEnter: (to, from, next) => {
+      if (store.state.userInfo.token) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
   },
   {
     path: "/login",
@@ -47,6 +64,14 @@ VueRouter.prototype.push = function push(location) {
 
 const router = new VueRouter({
   routes,
+});
+
+// 必须放在这个位置
+// 路由管理方案2:全局路由
+router.beforeEach((to, from, next) => {
+  console.log(to.path);
+  console.log(from.path);
+  next();
 });
 
 export default router;

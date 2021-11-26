@@ -31,6 +31,11 @@ export default {
       },
     };
   },
+  // 局部路由
+  beforeRouteEnter(to, from, next) {
+    console.log("路由跳转" + from.path);
+    next();
+  },
   methods: {
     blogLogin() {
       if (
