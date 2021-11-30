@@ -38,7 +38,7 @@
             <i class="el-icon-s-operation"></i>
             <span slot="title">Section Management</span>
           </el-menu-item>
-          <el-menu-item index="/logout">
+          <el-menu-item v-if="authUserLogin" index="/logout">
             <i class="el-icon-back"></i>
             <span slot="title">Logout</span>
           </el-menu-item>
@@ -71,6 +71,12 @@ export default {
     //   this.screenWidth = document.body.clientWidth;
     // };
     this.changeDevice();
+  },
+  computed: {
+    // 验证用户登陆
+    authUserLogin() {
+      return this.$store.getters.isNotUserLogin;
+    },
   },
   methods: {
     // 当屏幕变化时，改变布局

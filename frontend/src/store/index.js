@@ -2,12 +2,19 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import Qs from "qs";
+import router from "../router";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     userInfo: {},
+  },
+  getters: {
+    // 查询登录状态
+    isNotUserLogin(state) {
+      return state.userInfo.token;
+    },
   },
   // 仅支持同步操作
   mutations: {
@@ -35,6 +42,7 @@ export default new Vuex.Store({
           }
           //   console.log(res);
           commit("saveUserInfo", res.data);
+          router.push({ path: "/" });
         })
         .catch((err) => console.error(err));
     },
@@ -51,6 +59,7 @@ export default new Vuex.Store({
           }
           // console.log(res.data);
           commit("saveUserInfo", res.data);
+          router.push({ path: "/" });
         })
         .catch((err) => console.error(err));
     },
