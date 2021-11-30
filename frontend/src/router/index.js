@@ -68,10 +68,10 @@ const router = new VueRouter({
 
 // 必须放在这个位置
 // 路由管理方案2:全局路由
-router.beforeEach((to, from, next) => {
-  console.log(to.path);
-  console.log(from.path);
-  next();
-});
+// router.beforeEach((to, from, next) => {
+//   console.log(to.path);
+//   console.log(from.path);
+//   next();
+// });
 
 export default router;

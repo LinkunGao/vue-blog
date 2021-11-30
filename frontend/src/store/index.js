@@ -22,6 +22,9 @@ export default new Vuex.Store({
     saveUserInfo(state, userInfo) {
       state.userInfo = userInfo;
     },
+    clearUserInfo(state) {
+      state.userInfo = {};
+    },
   },
   // 仅支持异步操作
   actions: {
@@ -62,6 +65,11 @@ export default new Vuex.Store({
           router.push({ path: "/" });
         })
         .catch((err) => console.error(err));
+    },
+    // 用户登出
+    blogLogout({ commit }) {
+      commit("clearUserInfo");
+      router.push({ path: "/login" });
     },
   },
   modules: {},

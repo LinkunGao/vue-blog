@@ -38,7 +38,7 @@
             <i class="el-icon-s-operation"></i>
             <span slot="title">Section Management</span>
           </el-menu-item>
-          <el-menu-item v-if="authUserLogin" index="/logout">
+          <el-menu-item v-if="authUserLogin" @click="blogLogout()">
             <i class="el-icon-back"></i>
             <span slot="title">Logout</span>
           </el-menu-item>
@@ -109,6 +109,13 @@ export default {
     //   // element ui 导航栏页面跳转方法二，不使用自带的router方案
     //   this.$router.push({ path: index });
     // },
+    // 退出登陆
+    blogLogout() {
+      // 已迁移到vuex中的action方法
+      // this.$store.commit("clearUserInfo");
+      // this.$router.push({ path: "/login" });
+      this.$store.dispatch("blogLogout");
+    },
   },
 };
 </script>
